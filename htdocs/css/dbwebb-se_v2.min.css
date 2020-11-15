@@ -38,3 +38,7 @@ p {
 .content {
   color: white;
 }
+
+input {
+  color: black; !important;
+}
