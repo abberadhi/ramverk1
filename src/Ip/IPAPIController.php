@@ -26,14 +26,26 @@ class IPAPIController implements ContainerInjectableInterface
 
         $ipAddress = $this->di->request->getPost('ip') ?? null;
 
+        $apikey = json_decode(file_get_contents(__DIR__ . '/.api.json'))->apikey;
+
+        $json = file_get_contents('http://api.ipapi.com/' . $ipAddress .'?access_key=' . $apikey .'&format=1');
+        $res = json_decode($json);
+
         if (!$ipAddress) {
             return ["Message" => "Not a valid ip"];
         }
+
+        $json = file_get_contents('http://api.ipapi.com/' . $ipAddress .'?access_key=' . $apikey .'&format=1');
+        $res = json_decode($json);
 
         $data = [
             "ip" => $ipAddress,
             "validipv6" => (filter_var($ipAddress, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6) ? true : false),
             "validipv4" => (filter_var($ipAddress, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) ? true : false),
+            "latitude" => $res->latitude,
+            "longitude" => $res->longitude,
+            "country" => $res->country_name,
+            "city" => $res->city        
         ];
 
 

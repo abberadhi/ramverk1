@@ -75,4 +75,12 @@ class IPLookupControllerTest extends TestCase
         $body = $res->getBody();
         $this->assertContains("143-108-15-51.instances.scw.cloud", $body);
     }
+
+    public function testIpIndexActionPost() {
+        $this->di->request->setPost("ip", "51.15.108.143");
+        $res = $this->controller->indexActionPost();
+
+        $body = $res->getBody();
+        $this->assertContains("4.9401898384094 ", $body);
+    }
 }

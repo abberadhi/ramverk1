@@ -72,4 +72,12 @@ class IPAPIControllerTest extends TestCase
 
         $this->assertContains("Not a valid ip", $res);
     }
+
+    // public function testLatitudeIndexActionPost() {
+    //     $this->di->request->setPost("ip", "51.15.108.143");
+    //     $res = $this->controller->indexActionPost();
+
+    //     $body = $res->getBody();
+    //     $this->assertContains("12.983590126037598", $body);
+    // }
 }
