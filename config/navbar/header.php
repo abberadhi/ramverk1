@@ -53,5 +53,10 @@ return [
             "url" => "ip",
             "title" => "validera ip adresser",
         ],
+        [
+            "text" => "Weather",
+            "url" => "weather",
+            "title" => "Väderraport",
+        ],
     ],
 ];
