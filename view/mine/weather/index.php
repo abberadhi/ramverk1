@@ -8,6 +8,8 @@ namespace Anax\View;
 
 <form>
     <label>Your IP address<br>
-        <input name="ip" placeholder="your IP">
+        <input name="ip" placeholder="your IP"> <input type="submit" value="Search"> 
     </label>
 </form>
+
+<h1>Data <?= $data["h1Position"] ?? "" ?></h1>

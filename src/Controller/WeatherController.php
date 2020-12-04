@@ -1,8 +1,8 @@
 <?php
 
-namespace Abbe\Weather;
-use Abbe\Weather;
+namespace Abbe\Controller;
 
+use Abbe\Models\OpenWeather;
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
 use Exception;
@@ -26,6 +26,8 @@ class WeatherController implements ContainerInjectableInterface
     public function indexActionGet()
     {
 
+        $te = new OpenWeather("55.594860076904", "12.983590126038");
+
         $data = [
             "name" => "test"
         ];
@@ -48,21 +50,11 @@ class WeatherController implements ContainerInjectableInterface
 
 
         $data = [
-            "ip" => $ipAddress,
-            "validipv6" => (filter_var($ipAddress, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6) ? "Valid" : "Not Valid"),
-            "validipv4" => (filter_var($ipAddress, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4) ? "Valid" : "Not Valid"),
-            "latitude" => $res->latitude,
-            "longitude" => $res->longitude,
-            "country" => $res->country_name,
-            "city" => $res->city
+            "ip" => $ipAddress
         ];
-        
-        error_reporting(0); 
-        $data["hostname"] = gethostbyaddr($ipAddress) ?? "N/A";
-        error_reporting(1); 
 
-        $this->page->add('mine/iplookup/index', $data);
+        $this->page->add('mine/weather/index', $data);
 
-        return $this->page->render(["title" => "IP Validator"]);
+        return $this->page->render(["title" => "Weather report"]);
     }
 }

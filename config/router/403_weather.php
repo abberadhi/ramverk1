@@ -5,9 +5,9 @@
 return [
     "routes" => [
         [
-            "info" => "IP checker.",
+            "info" => "Weather checker.",
             "mount" => "weather",
-            "handler" => "\Abbe\Weather\WeatherController",
+            "handler" => "\Abbe\Controller\WeatherController",
         ],
     ]
 ];
