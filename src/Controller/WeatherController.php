@@ -42,11 +42,8 @@ class WeatherController implements ContainerInjectableInterface
         $ipAddress = $this->di->request->getPost('ip') ?? "";
         $te = new OpenWeather($ipAddress);
 
-        $data = [
-            "lat" => $te->getData()["lat"],
-            "lon" => $te->getData()["lon"]
-        ];
-
+        $data = $te->requestData();
+        $data["name"] = "Weather";
         $this->page->add('mine/weather/index', $data);
 
         return $this->page->render(["title" => "Weather report"]);

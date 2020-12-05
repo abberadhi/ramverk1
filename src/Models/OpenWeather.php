@@ -48,7 +48,7 @@ class OpenWeather {
         
     }
 
-    private function requestData() {
+    public function requestData() {
         $this->url[] = $this->baseurl . 'onecall?lat=' .  $this->data["lat"] . '&lon=' . $this->data["lon"] . '&exclude=minutely,hourly&units=metric&appid=' . $this->api_key;
 
 
@@ -71,17 +71,23 @@ class OpenWeather {
         }
 
         do {
-            curl_multi_exec($master,$running);
+            curl_multi_exec($master, $running);
         } while($running > 0);
 
 
         for($i = 0; $i < $node_count; $i++)
         {
-            $results[] = json_decode(curl_multi_getcontent  ( $curl_arr[$i]  ));
+            $results[] = json_decode(curl_multi_getcontent($curl_arr[$i]));
         }
 
         curl_multi_close($master);
-        
+
+        $this->data["forecast"] = $results[0];
+        $this->data["timemachine"] = [$results[1], $results[2], $results[3], $results[4], $results[5]];
+
+
+        return $this->data;
+
     }
 
     public function getData() {
