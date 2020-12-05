@@ -6945,7 +6945,7 @@ body {
 }
 
 * {
-  color: #ccc; !important;
+  color: #ccc !important;
 }
 
 .hljs {
@@ -6957,7 +6957,7 @@ code {
 }
 
 p {
-  color: #ccc; !important;
+  color: #ccc !important;
 }
 
 .content {
@@ -6965,5 +6965,5 @@ p {
 }
 
 input {
-  color: black; !important;
+  color: black !important;
 }

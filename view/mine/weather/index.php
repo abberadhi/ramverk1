@@ -12,18 +12,38 @@ namespace Anax\View;
     </label>
 </form>
 
-<h1>Data <?= $data["h1Position"] ?? "" ?></h1>
+<h1>Data</h1>
 
 <?php if (isset($data["lon"])): ?>
     <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=<?= $data["lon"] ?>%2C<?= $data["lat"] ?>%2C<?= $data["lon"] ?>7%2C<?= $data["lat"] ?>&amp;layer=mapnik&amp;marker=<?= $data["lat"] ?>%2C<?= $data["lon"] ?>" style="border: 1px solid black"></iframe>
 
+<div class="wrapper">
 
-<div class="weatherContainer">
-    
+    <div class="box currentWeather">
+        <p>Current</p>
+        <p><?= gmdate("Y-m-d", $forecast->current->dt) ?></p>
+        <p><?= $forecast->current->weather[0]->description ?></p>
+        <p><?= $forecast->current->temp ?>°C</p>
+    </div>
 
-    <?= var_dump($data) ?>
+    <?php foreach ($forecast->daily as $value): ?>
+        <div class="box">
+        <p><?= gmdate("Y-m-d", $value->dt) ?></p>
+        <p><?= $value->weather[0]->description ?></p>
+        <p><?= $value->temp->min ?>°C - <?= $value->temp->max ?>°C</p>
+        <p>Avr: <?= $value->temp->day ?>°C</p>
+    </div>
+    <?php endforeach; ?>
 
+    <?php foreach ($timemachine as $value): ?>
+        <div class="box oldData">
+        <p>Old data:</p>
+        <p><?= gmdate("Y-m-d", $value->current->dt) ?></p>
+        <p><?= $value->current->weather[0]->description ?></p>
+        <p><?= $value->current->temp ?>°C</p>
 
+    </div>
+    <?php endforeach; ?>
 
 </div>
 <?php endif;?>

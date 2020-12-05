@@ -53,7 +53,7 @@ class OpenWeather {
 
 
         for ($i = 5; $i > 0; $i--) {
-            $this->url[] = $this->baseurl . "onecall/timemachine?lat=" .  $this->data["lat"] . "&lon=" . $this->data['lon'] . "&dt=" . strtotime('-' . $i .' day') . "&appid=" . $this->api_key;
+            $this->url[] = $this->baseurl . "onecall/timemachine?lat=" .  $this->data["lat"] . "&lon=" . $this->data['lon'] . "&dt=" . strtotime('-' . $i .' day') . "&exclude=minutely,hourly&units=metric&appid=" . $this->api_key;
         }
 
 
