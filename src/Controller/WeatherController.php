@@ -26,8 +26,6 @@ class WeatherController implements ContainerInjectableInterface
     public function indexActionGet()
     {
 
-        $te = new OpenWeather("55.594860076904", "12.983590126038");
-
         $data = [
             "name" => "test"
         ];
@@ -42,15 +40,11 @@ class WeatherController implements ContainerInjectableInterface
     {
 
         $ipAddress = $this->di->request->getPost('ip') ?? "";
-
-        $apikey = json_decode(file_get_contents(__DIR__ . '/.api.json'))->apikey;
-
-        $json = file_get_contents('http://api.ipapi.com/' . $ipAddress .'?access_key=' . $apikey .'&format=1');
-        $res = json_decode($json);
-
+        $te = new OpenWeather($ipAddress);
 
         $data = [
-            "ip" => $ipAddress
+            "lat" => $te->getData()["lat"],
+            "lon" => $te->getData()["lon"]
         ];
 
         $this->page->add('mine/weather/index', $data);
