@@ -40,14 +40,15 @@ class WeatherController implements ContainerInjectableInterface
     {
 
         $ipAddress = $this->di->request->getPost('ip') ?? "";
+
         try {
             $te = new OpenWeather($ipAddress);
-
-            $data = $te->requestData();
+            $data = $te->requestData();        
         } catch (Exception $e) {
-            $data["message"] = "Something went wrong. Please check your IP address.";
+            $data["message"] = "Something is wrong with the specified IP address. Please try again.";
         }
-
+        
+        $data["specifiedIP"] = $ipAddress;
         $data["name"] = "Weather";
 
         $this->page->add('mine/weather/index', $data);

@@ -46,4 +46,6 @@ namespace Anax\View;
     <?php endforeach; ?>
 
 </div>
+<?php elseif(isset($data["specifiedIP"])): ?>
+    Something went wrong. Please check your specified IP address.
 <?php endif;?>
