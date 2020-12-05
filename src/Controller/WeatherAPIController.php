@@ -7,7 +7,7 @@ use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
 use Exception;
 
-class WeatherController implements ContainerInjectableInterface
+class WeatherAPIController implements ContainerInjectableInterface
 {
     use ContainerInjectableTrait;
 
@@ -23,19 +23,6 @@ class WeatherController implements ContainerInjectableInterface
         $this->page = $this->di->get("page");
     }
 
-    public function indexActionGet()
-    {
-
-        $data = [
-            "name" => "test"
-        ];
-
-        $this->page->add('mine/weather/index', $data);
-
-        return $this->page->render(["title" => "Weather report"]);
-
-    }
-
     public function indexActionPost()
     {
 
@@ -49,10 +36,7 @@ class WeatherController implements ContainerInjectableInterface
         }
         
         $data["specifiedIP"] = $ipAddress;
-        $data["name"] = "Weather";
 
-        $this->page->add('mine/weather/index', $data);
-
-        return $this->page->render(["title" => "Weather report"]);
+        return json_encode($data);
     }
 }

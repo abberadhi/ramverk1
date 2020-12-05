@@ -12,21 +12,13 @@ class OpenWeather {
     private $api_key;
     private $baseurl = "https://api.openweathermap.org/data/2.5/";
 
-    public function __construct($ip)
-    {
-        $this->getLatLon($ip);
-
-        $this->api_key = $this->loadApikey();
-        $this->data = $this->requestData();
-    }
-
     private function loadApikey() {
         $json = file_get_contents(ANAX_INSTALL_PATH . "/config/.weatherapi.json");
         $res = json_decode($json);
         return $res->apikey;
     }
 
-    private function getLatLon($ip) {
+    private function getLatLon() {
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "http://www.student.bth.se/~abra19/dbwebb-kurser/ramverk1/me/redovisa/htdocs/api/data");
@@ -48,14 +40,16 @@ class OpenWeather {
         
     }
 
-    public function requestData() {
+    public function requestData($ip) {
+        $this->api_key = $this->loadApikey(); // load api key to private variable
+        $this->getLatLon($ip); // get latitude and longitude to private variable
+
         $this->url[] = $this->baseurl . 'onecall?lat=' .  $this->data["lat"] . '&lon=' . $this->data["lon"] . '&exclude=minutely,hourly&units=metric&appid=' . $this->api_key;
 
 
         for ($i = 5; $i > 0; $i--) {
             $this->url[] = $this->baseurl . "onecall/timemachine?lat=" .  $this->data["lat"] . "&lon=" . $this->data['lon'] . "&dt=" . strtotime('-' . $i .' day') . "&exclude=minutely,hourly&units=metric&appid=" . $this->api_key;
         }
-
 
         $node_count = count($this->url);
 
