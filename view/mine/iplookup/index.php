@@ -2,21 +2,6 @@
 
 namespace Anax\View;
 
-function getIPAddress() {
-    if(!empty($_SERVER['HTTP_CLIENT_IP'])) {  
-        $ip = $_SERVER['HTTP_CLIENT_IP'];  
-    }  
-    elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {  
-            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];  
-     }  
-    else{  
-             $ip = $_SERVER['REMOTE_ADDR'];  
-     } 
-     return $ip;  
-}
-
-$ipr = getIPAddress() ?? "";
-
 ?>
 
 <h1>IP Lookup/Validator</h1>
@@ -50,7 +35,7 @@ City:  <?= $city ?? "None" ?>
 <h1>IP Lookup/Validator (JSON)</h1>
 <form method="POST" action="http://www.student.bth.se/~abra19/dbwebb-kurser/ramverk1/me/redovisa/htdocs/api/data">
 <label>Enter IP<br>
-<input type="text" value="<?= $ipr ?? "" ?>" name="ip"></label>
+<input type="text" value="" name="ip"></label>
 <input type="submit" value="Check">
 </form>
 <br>
