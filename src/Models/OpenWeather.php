@@ -41,7 +41,7 @@ class OpenWeather {
 
     public function requestData($ip) {
         $this->api_key = $this->loadApikey(); // load api key to private variable
-        $this->getLatLon($ip); // get latitude and longitude to private variable
+        $pos = $this->getLatLon($ip); // get latitude and longitude to private variable
 
         $this->url[] = $this->baseurl . 'onecall?lat=' .  $this->data["lat"] . '&lon=' . $this->data["lon"] . '&exclude=minutely,hourly&units=metric&appid=' . $this->api_key;
 

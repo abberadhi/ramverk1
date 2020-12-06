@@ -23,10 +23,10 @@ class WeatherAPIController implements ContainerInjectableInterface
         $this->page = $this->di->get("page");
     }
 
-    public function indexActionPost()
+    public function indexActionGet()
     {
 
-        $ipAddress = $this->di->request->getPost('ip') ?? "";
+        $ipAddress = $this->di->request->getGet('ip') ?? "";
 
         try {
             $te = $this->di->get("weather");

@@ -49,3 +49,8 @@ namespace Anax\View;
 <?php elseif(isset($data["specifiedIP"])): ?>
     Something went wrong. Please check your specified IP address.
 <?php endif;?>
+
+<h1>API Usage</h1>
+Send a GET request to the following:
+<pre class="hljs">http://www.student.bth.se/~abra19/dbwebb-kurser/ramverk1/me/redovisa/htdocs/api/weatherapi?ip={ip address}
+</pre>
