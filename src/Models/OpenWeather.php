@@ -18,7 +18,7 @@ class OpenWeather {
         return $res->apikey;
     }
 
-    private function getLatLon() {
+    private function getLatLon($ip) {
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "http://www.student.bth.se/~abra19/dbwebb-kurser/ramverk1/me/redovisa/htdocs/api/data");
@@ -37,7 +37,6 @@ class OpenWeather {
 
         $this->data["lon"] = $d->longitude;
         $this->data["lat"] = $d->latitude;
-        
     }
 
     public function requestData($ip) {

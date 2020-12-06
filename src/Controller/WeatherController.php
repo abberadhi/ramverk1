@@ -2,7 +2,6 @@
 
 namespace Abbe\Controller;
 
-use Abbe\Models\OpenWeather;
 use Anax\Commons\ContainerInjectableInterface;
 use Anax\Commons\ContainerInjectableTrait;
 use Exception;
@@ -42,8 +41,8 @@ class WeatherController implements ContainerInjectableInterface
         $ipAddress = $this->di->request->getPost('ip') ?? "";
 
         try {
-            $te = new OpenWeather();
-            $data = $te->requestData($ipAddress);        
+            $te = $this->di->get("weather");
+            $data = $te->requestData($ipAddress);
         } catch (Exception $e) {
             $data["message"] = "Something is wrong with the specified IP address. Please try again.";
         }
