@@ -37,6 +37,8 @@ class OpenWeather {
 
         $this->data["lon"] = $d->longitude;
         $this->data["lat"] = $d->latitude;
+        $this->data["country"] = $d->country;
+        $this->data["city"] = $d->city;
     }
 
     public function requestData($ip) {

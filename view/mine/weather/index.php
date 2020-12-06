@@ -15,6 +15,10 @@ namespace Anax\View;
 <h1>Data</h1>
 
 <?php if (isset($data["lon"])): ?>
+    <p>Location: <?= $data["city"] ?>, <?= $data["country"] ?></p>
+
+
+
     <iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=<?= $data["lon"] ?>%2C<?= $data["lat"] ?>%2C<?= $data["lon"] ?>7%2C<?= $data["lat"] ?>&amp;layer=mapnik&amp;marker=<?= $data["lat"] ?>%2C<?= $data["lon"] ?>" style="border: 1px solid black"></iframe>
 
 <div class="wrapper">
