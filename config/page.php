@@ -19,6 +19,7 @@ return [
             "lang" => "sv",
             "stylesheets" => [
                 "css/dbwebb-se.min.css",
+                "css/weather.css"
             ],
             "javascripts" => [
                 "js/responsive-menu.js",
