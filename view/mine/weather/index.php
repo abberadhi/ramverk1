@@ -14,7 +14,7 @@ namespace Anax\View;
 
 <h1>Data</h1>
 
-<?php if (isset($data["lon"])): ?>
+<?php if (isset($data["lon"])) : ?>
     <p>Location: <?= $data["city"] ?>, <?= $data["country"] ?></p>
 
 
@@ -30,7 +30,7 @@ namespace Anax\View;
         <p><?= $forecast->current->temp ?>°C</p>
     </div>
 
-    <?php foreach ($forecast->daily as $value): ?>
+    <?php foreach ($forecast->daily as $value) : ?>
         <div class="box">
         <p><?= gmdate("Y-m-d", $value->dt) ?></p>
         <p><?= $value->weather[0]->description ?></p>
@@ -39,7 +39,7 @@ namespace Anax\View;
     </div>
     <?php endforeach; ?>
 
-    <?php foreach ($timemachine as $value): ?>
+    <?php foreach ($timemachine as $value) : ?>
         <div class="box oldData">
         <p>Old data:</p>
         <p><?= gmdate("Y-m-d", $value->current->dt) ?></p>
@@ -50,7 +50,7 @@ namespace Anax\View;
     <?php endforeach; ?>
 
 </div>
-<?php elseif(isset($data["specifiedIP"])): ?>
+<?php elseif (isset($data["specifiedIP"])) : ?>
     Something went wrong. Please check your specified IP address.
 <?php endif;?>
 

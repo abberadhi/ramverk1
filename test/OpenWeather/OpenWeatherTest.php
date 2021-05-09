@@ -1,8 +1,8 @@
 <?php
 
 namespace Abbe\Models;
-use Abbe\Models\OpenWeather;
 
+use Abbe\Models\OpenWeather;
 use Anax\Controller\SampleAppController;
 use Anax\DI\DIMagic;
 use Anax\Response\ResponseUtility;
@@ -36,20 +36,21 @@ class OpenWeatherTest extends TestCase
         $di = $this->di;
 
         // Setup the controller
-        $this->controller = new \Abbe\Models\OpenWeather();
+        $this->controller = new OpenWeather();
     }
 
-    public function testRequestDataPost() {
+    public function testRequestDataPost()
+    {
         $this->controller = new OpenWeather();
         $res = $this->controller->requestData("notanip");
         $this->assertContains("Nothing to geocode", serialize($res));
     }
 
 
-    public function failTestRequestDataPost() {
+    public function failTestRequestDataPost()
+    {
         $this->controller = new OpenWeather();
         $res = $this->controller->requestData("51.15.108.143");
         $this->assertStringNotContainsString("Nothing to geocode", serialize($res));
     }
-
 }

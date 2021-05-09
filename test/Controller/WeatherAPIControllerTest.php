@@ -1,9 +1,8 @@
 <?php
 
-namespace Abbe\Ip;
+namespace Abbe\Controller;
 
-use Abbe\Ip;
-use Abbe\Ip\IPAPIController;
+use Abbe\Controller\WeatherAPIController;
 use Anax\Controller\SampleAppController;
 use Anax\DI\DIMagic;
 use Anax\Response\ResponseUtility;
@@ -13,7 +12,7 @@ use PHPUnit\Framework\TestCase;
  * Test the controller like it would be used from the router,
  * simulating the actual router paths and calling it directly.
  */
-class IPAPIControllerTest extends TestCase
+class WeatherAPIControllerTest extends TestCase
 {
     // private $controller;
 
@@ -57,23 +56,27 @@ class IPAPIControllerTest extends TestCase
         $di = $this->di;
 
         // Setup the controller
-        $this->controller = new IPAPIController();
+        $this->controller = new WeatherAPIController();
         $this->controller->setDI($this->di);
         $this->controller->initialize();
     }
 
-    public function testDataActionPost()
+    public function testIndexActionGet()
     {
-        $this->di->request->setPost("ip", "51.15.108.143");
-        $res = $this->controller->dataActionPost();
-        $this->assertContains("143-108-15-51.instances.scw.cloud", $res[0]);
+        $this->di->request->setGet("ip", "51.15.108.143");
+        $res = $this->controller->indexActionGet();
+
+        // lon
+        $this->assertContains("4.940189838409424", $res);
+        // lat
+        $this->assertContains("52.309051513671875", $res);
     }
 
     public function testDataActionFail()
     {
-        $res = $this->controller->dataActionPost();
+        $res = $this->controller->indexActionGet();
 
-        $this->assertContains("Not a valid ip", $res);
+        $this->assertContains("Something is wrong with the specified IP address. Please try again.", $res);
     }
 
     // public function testLatitudeIndexActionPost() {

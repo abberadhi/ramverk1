@@ -32,7 +32,6 @@ class WeatherController implements ContainerInjectableInterface
         $this->page->add('mine/weather/index', $data);
 
         return $this->page->render(["title" => "Weather report"]);
-
     }
 
     public function indexActionPost()
@@ -41,8 +40,8 @@ class WeatherController implements ContainerInjectableInterface
         $ipAddress = $this->di->request->getPost('ip') ?? "";
 
         try {
-            $te = $this->di->get("weather");
-            $data = $te->requestData($ipAddress);
+            $te1 = $this->di->get("weather");
+            $data = $te1->requestData($ipAddress);
         } catch (Exception $e) {
             $data["message"] = "Something is wrong with the specified IP address. Please try again.";
         }

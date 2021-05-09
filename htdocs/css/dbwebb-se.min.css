@@ -44,23 +44,3 @@ p {
 input {
   color: black !important;
 }
-
-.box {
-  width: 200px;
-  background-color: #444;
-  color: #fff;
-  border-radius: 5px;
-  padding: 0px;
-  font-size: 100%;
-  display: inline-block;
-  margin: 1em;
-  text-align: center;
-}
-
-.currentWeather {
-  background-color: rgb(30, 72, 0);
-}
-
-.oldData {
-  background-color: rgb(21, 21, 21);
-}
